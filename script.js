@@ -1,7 +1,7 @@
   async function loadMessage() {
     document.getElementById('message').innerText = "Loading...";
     document.getElementById("quote").style.visibility = "visible";
-    const url = "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/d7302967d334cbe3f27954b6a8df7d4641e6e12f/gistfile1.txt";
+    const url = "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/8472a97872c288f42c13df5e96e02d60ffa6d101/gistfile1.txt";
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error("Nie udało się wczytać pliku.");
