@@ -15,10 +15,15 @@
             <p>Wygeneruj* swoją własną wiadomość adisona</p>
             <button class="button-3" onclick="loadMessage()">Generuj</button>
             <div class="quote" id="quote">
-                <img src="img/adison.png" alt="Tu powinno byc zdjecie adisona ale sie nie zaladowalo" class="image"> <p id="message">blank</p>
+                <img src="img/adison.png" alt="Tu powinno byc zdjecie adisona ale sie nie zaladowalo" class="image-adi">
+                <p id="message">blank</p>
+                <div class="copy-to-clipboard" onclick="copyToClipboard()">
+                    <img src="img/copy.svg" alt="copy-to-clipboard" class="image-copy">
+                </div>
             </div>
         </div>
 
+        <div id="snackbar"></div>
         <footer>*Przycisk losuje jedną z 100 000 wiadomoścy wygenerowanych przy pomocy AI</footer>
     </body>
 </html>
