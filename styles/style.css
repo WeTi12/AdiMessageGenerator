@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #2C2C2C;
+    color: #E4E4E4;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 22px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.content {
+    text-align: center;
+}
+
+.quote {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.image-adi {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+}
+
+.image-copy {
+    width: 24px;
+    height: 24px;
+    color: #E4E4E4;
+}
