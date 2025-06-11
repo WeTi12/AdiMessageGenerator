@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>AdisonMessageGen</title>
-        <meta name="description" content="Adison messages">
-        <meta name="author" content="WeTi">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/buttons.css">
-        <link rel="stylesheet" href="styles/snackbar.css">
-        <meta name="robots" content="index, follow">
-        <script src="script.js"></script>
-    </head>
-    <body>
-        <div class="content">
-            <p>Wygeneruj* swoją własną wiadomość adisona</p>
-            <button class="button-3" onclick="loadMessage()">Generuj</button>
-            <div class="quote" id="quote">
-                <img src="img/adison.png" alt="Tu powinno byc zdjecie adisona ale sie nie zaladowalo" class="image-adi">
-                <p id="message">blank</p>
-                <div class="copy-to-clipboard" onclick="copyToClipboard()">
-                    <img src="img/copy.svg" alt="copy-to-clipboard" class="image-copy">
-                </div>
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AdisonMessageGen</title>
+    <meta name="description" content="Adison messages" />
+    <meta name="author" content="WeTi" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/buttons.css" />
+    <link rel="stylesheet" href="styles/snackbar.css" />
+    <meta name="robots" content="index, follow" />
+    <script src="script.js"></script>
+  </head>
+  <body onload="initializeBaseView()">
+    <header>
+      <button class="button-with-icon" id="real" onclick="changeView(0)">
+        <img src="img/adison.png" alt=":adi:" class="image-adi" />Prawdziwy
+        adison
+      </button>
+      <button class="button-with-icon" id="aiv1" onclick="changeView(1)">
+        <img src="img/AIdi.png" alt=":adi:" class="image-adi" />AIder v1
+      </button>
+    </header>
 
-        <div id="snackbar"></div>
-        <footer>*Przycisk losuje jedną z 100 000 wiadomości wygenerowanych przy pomocy AI</footer>
-    </body>
+    <div class="content">
+      <p>Wygeneruj* swoją własną wiadomość adisona</p>
+      <div class="generate">
+        <button class="button-3" onclick="loadMessage()">Generuj</button>
+        <!-- TODO - cofanie (na razie mi sie nie chce myslec) -->
+        <!-- <button class="copy-to-clipboard" onclick="ohShitGoBack()" id="undo">
+          <img src="img/undo.svg" alt="undo" class="image-copy" />
+        </button> -->
+      </div>
+      <div class="quote" id="quote">
+        <img src="img/adison.png" alt=":adi:" class="image-adi" />
+        <p id="message">blank</p>
+        <div class="copy-to-clipboard" onclick="copyToClipboard()">
+          <img src="img/copy.svg" alt="copy-to-clipboard" class="image-copy" />
+        </div>
+      </div>
+    </div>
+
+    <div id="snackbar"></div>
+    <footer>
+      *Przycisk losuje jedną z 100 000 wiadomości wygenerowanych przy pomocy AI
+    </footer>
+  </body>
 </html>

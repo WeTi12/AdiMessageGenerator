@@ -21,6 +21,14 @@ footer {
     padding: 10px 0;
 }
 
+header {
+    position: absolute;
+    top: 12vh;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
 .content {
     text-align: center;
 }
@@ -43,4 +51,11 @@ footer {
     width: 24px;
     height: 24px;
     color: #E4E4E4;
+}
+
+.generate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

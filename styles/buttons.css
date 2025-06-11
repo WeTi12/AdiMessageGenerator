@@ -50,22 +50,22 @@
 }
 
 .copy-to-clipboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
-    margin-left: 4px;
-    background-color: #3b3b3b;
-    border: 1px solid rgba(27, 31, 35, .15);
-    border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-    box-sizing: border-box;
-    font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin-left: 4px;
+  background-color: #3b3b3b;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  font-size: 10px;
 }
 
 .copy-to-clipboard:hover {
-    background-color: #2ea44f;
+  background-color: #2ea44f;
 }
 
 .copy-to-clipboard:focus {
@@ -74,9 +74,9 @@
 }
 
 .copy-to-clipboard:disabled {
-  background-color: #94d3a2;
+  background-color: #333333;
   border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
+  color: #444444;
   cursor: default;
 }
 
@@ -88,4 +88,24 @@
 .copy-to-clipboard:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
+}
+
+.button-with-icon {
+  background-color: #3b3b3b;
+  color: #E4E4E4;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 24px;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.button-with-icon-set {
+  background-color: #2ea44f;
+}
+
+.button-with-icon:hover {
+  background-color: #298f46;
 }
