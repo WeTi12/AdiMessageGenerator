@@ -2,7 +2,6 @@ var currentView = 0; // 0 - adison, 1 - AIderv1
 var url = "";
 
 var queue = [];
-// document.getElementById("undo").disabled = true; 
 
 async function loadMessage() {
   document.getElementById("message").innerText = "Loading...";
@@ -27,36 +26,31 @@ async function loadMessage() {
     const randomIndex = Math.floor(Math.random() * count) + 1;
 
     const message = lines[randomIndex] || "(Brak wiadomości)";
-    document.getElementById("message").innerText = `${message}`;
-    // document.getElementById("undo").disabled = false;
+    printMessage(message);
+    addMessageToQueue(message, currentView);
+    switchBackButton();
   } catch (err) {
     document.getElementById("message").innerText = "Błąd";
   }
 }
 
 function ohShitGoBack() {
-    if (!queue.length) {
-        document.getElementById("snackbar").innerHTML =
-        "<div>Nie ma zadnych wiadomosci zapisanych typie</div>";
-        showSnackbar();
-        // document.getElementById("undo").disabled = true; 
-        return;
+  if (queue.length) {
+    queue.pop();
+    const lastMessage = queue.pop();
+
+    if (lastMessage) {
+      changeView(lastMessage.view);
+      printMessage(lastMessage.message);
+      addMessageToQueue(lastMessage.message, lastMessage.view);
+    } else {
+      document.getElementById("snackbar").innerHTML =
+        "<div>To byla ostatnia wiadomość</div>";
+      showSnackbar();
     }
-
-    const index = removeFromFront();
-    if (!queue.length) {
-        // document.getElementById("undo").disabled = true; 
-    }
-    const message = lines[index] || "(Brak wiadomości)";
-    document.getElementById("message").innerText = `${message}`;
-}
-
-function addToFront(num) {
-    queue.unshift(num);
-}
-
-function removeFromFront() {
-    return queue.shift();
+  }
+  switchBackButton();
+  toggleBadgeVisibility();
 }
 
 function copyToClipboard() {
@@ -87,9 +81,6 @@ function showSnackbar() {
 }
 
 function changeView(view) {
-  queue = [];
-  // document.getElementById("undo").disabled = true; 
-
   switch (view) {
     case 0:
       document.getElementById("real").classList.add("button-with-icon-set");
@@ -115,7 +106,34 @@ function initializeBaseView() {
     "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/7c70b91722b91071d310c2b818a155dc65819d02/gistfile1.txt";
   currentView = 0;
   queue = [];
-  // document.getElementById("undo").disabled = true; 
+  switchBackButton();
+  toggleBadgeVisibility();
 }
 
+function printMessage(message) {
+  document.getElementById("message").innerText = `${message}`;
+}
 
+function addMessageToQueue(message, view) {
+  const msg = { message: message, view: view };
+  queue.push(msg);
+  toggleBadgeVisibility();
+}
+
+function switchBackButton() {
+  if (queue.length > 1) {
+    document.getElementById("undo").style.display = "block"; 
+  } else {
+    document.getElementById("undo").style.display = "none"; 
+  }
+}
+
+function toggleBadgeVisibility() {
+  const badge = document.querySelector(".button-badge");
+  if (queue.length > 1) {
+    badge.style.display = "block";
+    badge.innerText = queue.length - 1;
+  } else {
+    badge.style.display = "none";
+  }
+}

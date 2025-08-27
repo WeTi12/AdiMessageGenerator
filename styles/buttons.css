@@ -5,7 +5,7 @@
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   box-sizing: border-box;
-  color: #E4E4E4;
+  color: #E0E0E0;
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
@@ -50,13 +50,14 @@
 }
 
 .copy-to-clipboard {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0px;
   margin-left: 4px;
-  background-color: #3b3b3b;
+  background-color: #1E1E1E;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
@@ -91,8 +92,8 @@
 }
 
 .button-with-icon {
-  background-color: #3b3b3b;
-  color: #E4E4E4;
+  background-color: #1E1E1E;
+  color: #E0E0E0;
   padding: 16px 24px;
   border: none;
   border-radius: 12px;

@@ -7,8 +7,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #2C2C2C;
-    color: #E4E4E4;
+    background-color: #121212;
+    color: #E0E0E0;
     font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     font-size: 22px;
 }
@@ -50,7 +50,7 @@ header {
 .image-copy {
     width: 24px;
     height: 24px;
-    color: #E4E4E4;
+    color: #E0E0E0;
 }
 
 .generate {
@@ -58,4 +58,22 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.button-badge {
+    display: none;
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    
+    padding: 1px 3px;
+    font-size: 10px;
+    
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+#undo {
+    display: none;
 }
