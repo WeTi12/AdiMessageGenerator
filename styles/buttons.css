@@ -110,3 +110,64 @@
 .button-with-icon:hover {
   background-color: #298f46;
 }
+
+.button-guess {
+  appearance: none;
+  border: 2px solid rgba(27, 31, 35, .15);
+  border-radius: 8px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #E0E0E0;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  margin: 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button-real {
+  background-color: #1E1E1E;
+  border-color: #2ea44f;
+  color: #2ea44f;
+}
+
+.button-real:hover {
+  background-color: #2ea44f;
+  color: #E0E0E0;
+}
+
+.button-real:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-ai {
+  background-color: #1E1E1E;
+  border-color: #ff9500;
+  color: #ff9500;
+}
+
+.button-ai:hover {
+  background-color: #ff9500;
+  color: #1E1E1E;
+}
+
+.button-ai:focus {
+  box-shadow: rgba(255, 149, 0, .4) 0 0 0 3px;
+  outline: none;
+}

@@ -138,3 +138,7 @@ function toggleBadgeVisibility() {
     badge.style.display = "none";
   }
 }
+
+function goToGuessGame() {
+  window.location.href = "guess.html";
+}
