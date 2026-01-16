@@ -151,3 +151,15 @@ function showSnackbar() {
 function goBack() {
   window.location.href = "index.html";
 }
+
+function copyGuessToClipboard() {
+  var copyText = ":adi: ";
+  var printText = '<span><img src="img/adison.png" alt="adi" class="image-adi">';
+  copyText += document.getElementById("guessMessage").innerHTML;
+  printText += document.getElementById("guessMessage").innerHTML;
+  printText += "</span>";
+
+  navigator.clipboard.writeText(copyText);
+
+  snackbarShowMessage("<div>Skopiowano: " + printText + "</div>");
+}
