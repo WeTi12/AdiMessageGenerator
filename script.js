@@ -44,9 +44,7 @@ function ohShitGoBack() {
       printMessage(lastMessage.message);
       addMessageToQueue(lastMessage.message, lastMessage.view);
     } else {
-      document.getElementById("snackbar").innerHTML =
-        "<div>To byla ostatnia wiadomość</div>";
-      showSnackbar();
+      snackbarShowMessage("<div>To byla ostatnia wiadomość</div>")
     }
   }
   switchBackButton();
@@ -65,8 +63,11 @@ function copyToClipboard() {
 
   printText;
 
-  document.getElementById("snackbar").innerHTML =
-    "<div>Skopiowano: " + printText + "</div>";
+  snackbarShowMessage("<div>Skopiowano: " + printText + "</div>")
+}
+
+function snackbarShowMessage(message) {
+  document.getElementById("snackbar").innerHTML = message;
   showSnackbar();
 }
 
@@ -136,4 +137,8 @@ function toggleBadgeVisibility() {
   } else {
     badge.style.display = "none";
   }
+}
+
+function goToGuessGame() {
+  window.location.href = "guess.html";
 }

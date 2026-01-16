@@ -16,6 +16,16 @@
   bottom: 50px;
 }
 
+#snackbar.success {
+  background-color: #192219;
+  border: 1px solid rgba(46, 164, 79, 0.35);
+}
+
+#snackbar.error {
+  background-color: #221919;
+  border: 1px solid rgba(255, 68, 68, 0.35);
+}
+
 #snackbar.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;

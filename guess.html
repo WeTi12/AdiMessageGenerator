@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zgadywanka - AdisonMessageGen</title>
+    <meta name="description" content="Guess if Adison wrote it" />
+    <meta name="author" content="WeTi" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/buttons.css" />
+    <link rel="stylesheet" href="styles/snackbar.css" />
+    <meta name="robots" content="index, follow" />
+    <script src="guess-game.js"></script>
+  </head>
+  <body onload="initializeGuessGame()">
+    <header>
+      <button class="button-with-icon" onclick="goBack()">
+        <img src="img/adison.png" alt=":adi:" class="image-adi" />Wróć
+      </button>
+    </header>
+
+    <div class="content">
+      <p>Czy to napisał Prawdziwy Adison czy AI?</p>
+      
+      <div class="score-display">
+        <div class="current-score">
+          <span class="score-label">Bieżący wynik:</span>
+          <span class="score-value" id="currentScore">0</span>
+        </div>
+        <div class="best-score">
+          <span class="score-label">Najlepszy wynik:</span>
+          <span class="score-value" id="bestScore">0</span>
+        </div>
+      </div>
+
+      <div class="quote" id="guessQuote">
+        <img src="img/adison.png" alt=":adi:" class="image-adi" />
+        <p id="guessMessage">Loading...</p>
+      </div>
+
+      <div class="guess-buttons">
+        <button class="button-guess button-real" onclick="makeGuess(0)">
+          <img src="img/adison.png" alt=":adi:" class="image-adi" />
+          Prawdziwy Adison
+        </button>
+        <button class="button-guess button-ai" onclick="makeGuess(1)">
+          <img src="img/AIdi.png" alt=":adi:" class="image-adi" />
+          AI
+        </button>
+      </div>
+
+    </div>
+
+    <div id="snackbar"></div>
+    <footer>
+      *Zdobywaj punkty za prawidłowe odpowiedzi. Zła odpowiedź resetuje wynik!
+    </footer>
+  </body>
+</html>
