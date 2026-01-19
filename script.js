@@ -87,7 +87,7 @@ function changeView(view) {
       document.getElementById("real").classList.add("button-with-icon-set");
       document.getElementById("aiv1").classList.remove("button-with-icon-set");
       url =
-        "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/7c70b91722b91071d310c2b818a155dc65819d02/gistfile1.txt";
+        "https://gist.githubusercontent.com/WeTi12/e8da2a744a317d3ddb748b03f2068d9d/raw/fe935cae27adca9ab7f2a4e4ea5f217a37a3717a/gistfile1.txt";
       currentView = 0;
       break;
     case 1:
@@ -104,7 +104,7 @@ function initializeBaseView() {
   document.getElementById("real").classList.add("button-with-icon-set");
   document.getElementById("aiv1").classList.remove("button-with-icon-set");
   url =
-    "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/7c70b91722b91071d310c2b818a155dc65819d02/gistfile1.txt";
+    "https://gist.githubusercontent.com/WeTi12/e8da2a744a317d3ddb748b03f2068d9d/raw/fe935cae27adca9ab7f2a4e4ea5f217a37a3717a/gistfile1.txt";
   currentView = 0;
   queue = [];
   switchBackButton();
