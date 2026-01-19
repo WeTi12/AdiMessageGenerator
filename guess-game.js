@@ -4,18 +4,13 @@ var currentMessage = "";
 var currentCorrectAnswer = -1; // 0 - real adi, 1 - AI
 var hasAnswered = false;
 
-const AI_PARTS_URL = "http://146.59.35.24/ai_parts/";
-const REAL_PARTS_URL = "http://146.59.35.24/original_parts/";
-
-const FILES_GUARANTEED = 50;
-const MESSAGE_TO_FETCH_RATIO = 4;
+const REAL_ADI_URL = "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/7c70b91722b91071d310c2b818a155dc65819d02/gistfile1.txt";
+const AI_URL = "https://raw.githubusercontent.com/WeTi12/AdiMessageMarkov/refs/heads/master/generated_markov.txt";
 
 const STORAGE_KEY = "guessGameBestScore";
 
 function initializeGuessGame() {
   loadBestScore();
-  initCategory(0);
-  initCategory(1);
   loadNextGuessMessage();
 }
 
@@ -54,23 +49,27 @@ async function loadNextGuessMessage() {
   
   try {
     currentCorrectAnswer = Math.random() < 0.5 ? 0 : 1;
-    await initCategory(currentCorrectAnswer);
-    const cache = getCache(currentCorrectAnswer);
-    if (!cache.sentences.length) {
+    const url = currentCorrectAnswer === 0 ? REAL_ADI_URL : AI_URL;
+    
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Nie udało się wczytać wiadomości.");
+
+    const text = await response.text();
+    const lines = text
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line !== "");
+
+    const count = parseInt(lines[0], 10);
+    if (isNaN(count) || count < 1 || lines.length <= 1) {
       document.getElementById("guessMessage").innerText = "Błąd podczas wczytywania wiadomości.";
       return;
     }
 
-    const randomIndex = randInt(0, cache.sentences.length - 1);
-    currentMessage = cache.sentences[randomIndex] || "(Brak wiadomości)";
+    const randomIndex = Math.floor(Math.random() * count) + 1;
+    currentMessage = lines[randomIndex] || "(Brak wiadomości)";
     
     document.getElementById("guessMessage").innerText = currentMessage;
-
-    cache.servedSinceLastFetch = (cache.servedSinceLastFetch || 0) + 1;
-    if (cache.servedSinceLastFetch >= MESSAGE_TO_FETCH_RATIO && !allFilesFetched(currentCorrectAnswer)) {
-      cache.servedSinceLastFetch = 0;
-      fetchRandomUnfetched(currentCorrectAnswer);
-    }
   } catch (err) {
     console.error(err);
     document.getElementById("guessMessage").innerText = "Błąd";
@@ -163,97 +162,4 @@ function copyGuessToClipboard() {
   navigator.clipboard.writeText(copyText);
 
   snackbarShowMessage("<div>Skopiowano: " + printText + "</div>");
-}
-
-const caches = {
-  0: {
-    baseUrl: REAL_PARTS_URL,
-    totalFiles: null,
-    fetchedFiles: new Set(),
-    pending: new Set(),
-    sentences: [],
-    servedSinceLastFetch: 0,
-    initPromise: null,
-  },
-  1: {
-    baseUrl: AI_PARTS_URL,
-    totalFiles: null,
-    fetchedFiles: new Set(),
-    pending: new Set(),
-    sentences: [],
-    servedSinceLastFetch: 0,
-    initPromise: null,
-  },
-};
-
-function getCache(view) {
-  return caches[view === 1 ? 1 : 0];
-}
-
-function randInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-async function fetchFileParts(baseUrl, index) {
-  const response = await fetch(`${baseUrl}${index}.txt`);
-  if (!response.ok) throw new Error("Nie udało się wczytać pliku.");
-  const text = await response.text();
-  const lines = text
-    .split("\n")
-    .map((l) => l.trim());
-
-  if (lines.length < 3) throw new Error("Nieprawidłowy format pliku.");
-
-  const totalFiles = parseInt(lines[0], 10);
-  const sentencesInFile = parseInt(lines[1], 10);
-  if (isNaN(totalFiles) || isNaN(sentencesInFile)) {
-    throw new Error("Nieprawidłowy format pliku.");
-  }
-
-  const sentences = lines.slice(2).filter((s) => s !== "");
-  return { totalFiles, sentences };
-}
-
-async function fetchAndStore(view, index) {
-  const cache = getCache(view);
-  if (cache.fetchedFiles.has(index) || cache.pending.has(index)) return;
-  cache.pending.add(index);
-  try {
-    const { totalFiles, sentences } = await fetchFileParts(cache.baseUrl, index);
-    if (cache.totalFiles === null) cache.totalFiles = totalFiles;
-    cache.sentences.push(...sentences);
-    cache.fetchedFiles.add(index);
-  } finally {
-    cache.pending.delete(index);
-  }
-}
-
-function allFilesFetched(view) {
-  const cache = getCache(view);
-  return cache.totalFiles !== null && cache.fetchedFiles.size >= cache.totalFiles;
-}
-
-async function initCategory(view) {
-  const cache = getCache(view);
-  if (cache.initPromise) return cache.initPromise;
-  const firstIndex = randInt(1, FILES_GUARANTEED);
-  cache.initPromise = fetchAndStore(view, firstIndex).catch(() => {
-    cache.initPromise = null;
-    throw new Error("Błąd inicjalizacji kategorii");
-  });
-  return cache.initPromise;
-}
-
-async function fetchRandomUnfetched(view) {
-  const cache = getCache(view);
-  if (cache.totalFiles === null) return;
-  if (allFilesFetched(view)) return;
-
-  const notFetched = [];
-  for (let i = 1; i <= cache.totalFiles; i++) {
-    if (!cache.fetchedFiles.has(i) && !cache.pending.has(i)) notFetched.push(i);
-  }
-  if (notFetched.length === 0) return;
-  const index = notFetched[randInt(0, notFetched.length - 1)];
-  return fetchAndStore(view, index);
 }
