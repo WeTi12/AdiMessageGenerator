@@ -4,7 +4,7 @@ var currentMessage = "";
 var currentCorrectAnswer = -1; // 0 - real adi, 1 - AI
 var hasAnswered = false;
 
-const REAL_ADI_URL = "https://gist.githubusercontent.com/WeTi12/61702558fca4580cba8d905333ad781d/raw/7c70b91722b91071d310c2b818a155dc65819d02/gistfile1.txt";
+const REAL_ADI_URL = "https://gist.githubusercontent.com/WeTi12/e8da2a744a317d3ddb748b03f2068d9d/raw/fe935cae27adca9ab7f2a4e4ea5f217a37a3717a/gistfile1.txt";
 const AI_URL = "https://raw.githubusercontent.com/WeTi12/AdiMessageMarkov/refs/heads/master/generated_markov.txt";
 
 const STORAGE_KEY = "guessGameBestScore";
